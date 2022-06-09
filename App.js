@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ImageBackground } from "react-native";
+import { ImageBackground, SafeAreaView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 import StartGameScreen from "./screens/StartGameScreen";
@@ -8,16 +8,16 @@ import { styles } from "./styles/styles";
 
 export default function App() {
     const [screen, setScreen] = useState("StartGameScreen");
-    const [userNum, setUserNum] = useState();
+    const [initialNum, setInitialNum] = useState();
 
     useEffect(() => {
-        if (userNum) {
+        if (initialNum) {
             setScreen("GameScreen");
         }
-    }, [userNum]);
+    }, [initialNum]);
 
     const userNumberHandler = (num) => {
-        setUserNum(num);
+        setInitialNum(num);
     };
 
     let screenComp;
@@ -29,7 +29,7 @@ export default function App() {
             );
             break;
         case "GameScreen":
-            screenComp = <GameScreen />;
+            screenComp = <GameScreen initialNum={initialNum} />;
             break;
         default:
             screenComp = (
@@ -52,7 +52,7 @@ export default function App() {
                 style={styles.imageBackground}
                 imageStyle={styles.imageBackgroundImage}
             >
-                {screenComp}
+                <SafeAreaView style={{ flex: 1 }}>{screenComp}</SafeAreaView>
             </ImageBackground>
         </LinearGradient>
     );

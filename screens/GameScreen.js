@@ -1,11 +1,72 @@
-import { View, Text } from "react-native";
-import { useState } from "react";
+import { View, Text, TextInput, Pressable } from "react-native";
+import { useState, useEffect } from "react";
 
-const GameScreen = () => {
-    const [numberGuessed, setNumberGuessed] = useState();
+import { styles } from "../styles/styles";
+
+const GameScreen = ({ initialNum }) => {
+    const [numGuessed, setNumGuessed] = useState("");
+    const [aiNum, setAINum] = useState();
+    const [gameState, setGameState] = useState("");
+
+    useEffect(() => {
+        setAINum(Math.floor(Math.random() * initialNum));
+    }, []);
+
+    const guessHandler = () => {
+        if (+numGuessed === aiNum) {
+            setGameState("won");
+        } else if (+numGuessed < aiNum) {
+            setGameState("more");
+        } else {
+            setGameState("less");
+        }
+    };
+
+    let stateComp;
+    switch (gameState) {
+        case "won":
+            stateComp = <Text>You've won! Number was {aiNum}!</Text>;
+            break;
+        case "more":
+            stateComp = <Text>Nope, it's higher than {numGuessed}!</Text>;
+            break;
+        case "less":
+            stateComp = <Text>Nope, it's lower than {numGuessed}!</Text>;
+            break;
+        default:
+            stateComp = null;
+            break;
+    }
+
     return (
-        <View>
-            <Text>Game start!</Text>
+        <View style={styles.container}>
+            <Text style={styles.h1}>Game start!</Text>
+            <Text style={styles.text}>
+                Try to guess the number the computer has.
+            </Text>
+            <View style={styles.inputContainer}>
+                <TextInput
+                    style={styles.input}
+                    maxLength={2}
+                    keyboardType={"number-pad"}
+                    autoCapitalize="none"
+                    value={numGuessed}
+                    onChangeText={(v) => {
+                        setGameState("");
+                        setNumGuessed(v);
+                    }}
+                />
+                <Pressable
+                    style={styles.button}
+                    onPress={guessHandler}
+                    android_ripple={{ color: "green" }}
+                >
+                    <Text style={styles.buttonText}>Guess</Text>
+                </Pressable>
+            </View>
+            {stateComp && (
+                <View style={styles.inputContainer}>{stateComp}</View>
+            )}
         </View>
     );
 };

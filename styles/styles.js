@@ -19,10 +19,10 @@ export const styles = StyleSheet.create({
         opacity: 0.05,
     },
     container: {
-        marginTop: 100,
-        marginHorizontal: 30,
+        marginHorizontal: 10,
         alignItems: "center",
         flex: 1,
+        justifyContent: "center",
     },
     inputContainer: {
         backgroundColor: "white",
