@@ -25,13 +25,23 @@ const GameScreen = ({ initialNum }) => {
     let stateComp;
     switch (gameState) {
         case "won":
-            stateComp = <Text>You've won! Number was {aiNum}!</Text>;
+            stateComp = (
+                <Text style={styles.text}>You've won! Number was {aiNum}!</Text>
+            );
             break;
         case "more":
-            stateComp = <Text>Nope, it's higher than {numGuessed}!</Text>;
+            stateComp = (
+                <Text style={styles.text}>
+                    Nope, it's higher than {numGuessed}!
+                </Text>
+            );
             break;
         case "less":
-            stateComp = <Text>Nope, it's lower than {numGuessed}!</Text>;
+            stateComp = (
+                <Text style={styles.text}>
+                    Nope, it's lower than {numGuessed}!
+                </Text>
+            );
             break;
         default:
             stateComp = null;

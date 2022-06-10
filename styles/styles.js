@@ -5,16 +5,15 @@ export const styles = StyleSheet.create({
         fontSize: 20,
         marginBottom: 10,
         color: "rgb(35, 110, 35)",
+        fontFamily: "kdam-thmor-pro",
     },
     text: {
         color: "rgb(35, 110, 35)",
+        fontFamily: "kdam-thmor-pro",
     },
-    linearGradient: {
+    flex1: {
         flex: 1,
-    },
-    imageBackground: {
-        flex: 1,
-    },
+    },   
     imageBackgroundImage: {
         opacity: 0.05,
     },
@@ -35,6 +34,7 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.5,
         alignItems: "center",
         marginTop: 20,
+        fontFamily: "kdam-thmor-pro",
     },
     input: {
         width: 100,
@@ -47,6 +47,7 @@ export const styles = StyleSheet.create({
         borderBottomColor: "rgb(120, 222, 123)",
         borderBottomWidth: 2,
         color: "rgb(35, 110, 35)",
+        fontFamily: "kdam-thmor-pro",
     },
     button: {
         backgroundColor: "rgb(176, 225, 155)",
@@ -67,5 +68,6 @@ export const styles = StyleSheet.create({
         fontWeight: "bold",
         color: "rgb(35, 110, 35)",
         textTransform: "uppercase",
+        fontFamily: "kdam-thmor-pro",
     },
 });
